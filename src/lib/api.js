@@ -10,7 +10,7 @@ async function send({ method, path, data, token }) {
 	}
 
 	if (token) {
-		opts.headers['Authorization'] = `Token ${token}`;
+		opts.headers['Authorization'] = `Bearer ${token}`;
 	}
 
 	const res = await fetch(`${PUBLIC_API_URL}/${path}`, opts);

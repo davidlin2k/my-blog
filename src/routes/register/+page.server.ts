@@ -5,7 +5,7 @@ import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load: PageServerLoad = async ({ locals }) => {
-	if (locals.user) throw redirect(307, '/');
+	if (locals.token) throw redirect(307, '/');
 }
 
 /** @type {import('./$types').Actions} */
