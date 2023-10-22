@@ -3,26 +3,34 @@ import * as api from '$lib/api.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals }) {
-    if (locals.user) throw redirect(307, '/');
+	if (locals.user) throw redirect(307, '/');
 }
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    default: async ({ cookies, request }) => {
-        const data = await request.formData();
+	default: async ({ cookies, request }) => {
+		const data = await request.formData();
 
-        const body = await api.post('users/login', {
-            email: data.get('email'),
-            password: data.get('password')
-        });
+		const body = await api.post('users/login', {
+			email: data.get('email'),
+			password: data.get('password')
+		});
 
-        if (body.errors) {
-            return fail(401, body);
-        }
+		if (body.errors) {
+			return fail(401, body);
+		}
 
-        const value = btoa(JSON.stringify(body.data.token));
-        cookies.set('jwt', value, { path: '/' });
+		const value = body.data.token;
+		const maxAge = (new Date(body.data.exp) - Date.now()) / 1000;
 
-        throw redirect(307, '/');
-    }
+		cookies.set('jwt', value, {
+			path: '/',
+			httpOnly: true,
+			sameSite: 'strict',
+			secure: process.env.NODE_ENV === 'production',
+			maxAge: maxAge
+		});
+
+		throw redirect(307, '/');
+	}
 };

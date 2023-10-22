@@ -1,7 +1,6 @@
 /** @type {import('@sveltejs/kit').Handle} */
 export function handle({ event, resolve }) {
-    const jwt = event.cookies.get('jwt');
-    event.locals.user = jwt ? JSON.parse(atob(jwt)) : null;
+	event.locals.user = event.cookies.get('jwt');
 
-    return resolve(event);
+	return resolve(event);
 }
