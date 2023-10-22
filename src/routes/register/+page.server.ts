@@ -1,12 +1,12 @@
 import type { PageServerLoad, Actions } from './$types';
 
 import { fail, redirect } from '@sveltejs/kit';
-import * as api from '$lib/api.js';
+import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.user) throw redirect(307, '/');
-};
+}
 
 /** @type {import('./$types').Actions} */
 export const actions: Actions = {

@@ -1,13 +1,15 @@
+import type { PageServerLoad, Actions } from './$types';
+
 import { fail, redirect } from '@sveltejs/kit';
-import * as api from '$lib/api.js';
+import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ locals }) {
+export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.user) throw redirect(307, '/');
 }
 
 /** @type {import('./$types').Actions} */
-export const actions = {
+export const actions: Actions = {
 	default: async ({ cookies, request }) => {
 		const data = await request.formData();
 
@@ -21,7 +23,7 @@ export const actions = {
 		}
 
 		const value = body.data.token;
-		const maxAge = (new Date(body.data.exp) - Date.now()) / 1000;
+		const maxAge = (new Date(body.data.exp).getTime() - new Date().getTime()) / 1000;
 
 		cookies.set('jwt', value, {
 			path: '/',
