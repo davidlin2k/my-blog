@@ -1,2 +1,11 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { page } from '$app/stores';
+</script>
+
+<div>
+	{#if $page.data.user}
+		<h1>Welcome, {$page.data.user.name}</h1>
+	{:else}
+		<h1>Welcome, guest</h1>
+	{/if}
+</div>

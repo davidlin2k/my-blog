@@ -2,5 +2,5 @@
 </script>
 
 <div>
-	<h1>Settings</h1>
+	<h1 class="text-text-100">Settings</h1>
 </div>
