@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 
@@ -35,38 +34,35 @@
 				</button>
 
 				<!-- Dropdown Menu -->
-				{#if isOpen}
-					<div
-							class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
-							in:slide={{ duration: 150 }}
-					>
-						{#if $page.data.user}
-							<a
-									href="/settings"
-									class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-							>Settings</a
+				<div
+						class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
+				>
+					{#if $page.data.user}
+						<a
+								href="/settings"
+								class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+						>Settings</a
+						>
+						<form action="/logout" method="POST" use:enhance>
+							<button
+									type="submit"
+									class="block w-full text-left px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+							>Log out</button
 							>
-							<form action="/logout" method="POST" use:enhance>
-								<button
-										type="submit"
-										class="block w-full text-left px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-								>Log out</button
-								>
-							</form>
-						{:else}
-							<a
-									href="/login"
-									class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-							>Sign In</a
-							>
-							<a
-									href="/register"
-									class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-							>Sign Up</a
-							>
-						{/if}
-					</div>
-				{/if}
+						</form>
+					{:else}
+						<a
+								href="/login"
+								class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+						>Sign In</a
+						>
+						<a
+								href="/register"
+								class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+						>Sign Up</a
+						>
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>

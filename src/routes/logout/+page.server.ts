@@ -1,8 +1,7 @@
 import { env } from '$env/dynamic/private';
-import type { PageServerLoad, Actions } from './$types';
+import type { Actions } from './$types';
 
-import { fail, redirect } from '@sveltejs/kit';
-import * as api from '$lib/api';
+import { redirect } from '@sveltejs/kit';
 
 /** @type {import('./$types').Actions} */
 export const actions: Actions = {
