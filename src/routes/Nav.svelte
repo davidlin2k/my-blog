@@ -35,31 +35,31 @@
 
 				<!-- Dropdown Menu -->
 				<div
-						class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
+					class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
 				>
 					{#if $page.data.user}
 						<a
-								href="/settings"
-								class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-						>Settings</a
+							href="/settings"
+							class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+							>Settings</a
 						>
 						<form action="/logout" method="POST" use:enhance>
 							<button
-									type="submit"
-									class="block w-full text-left px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-							>Log out</button
+								type="submit"
+								class="block w-full text-left px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+								>Log out</button
 							>
 						</form>
 					{:else}
 						<a
-								href="/login"
-								class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-						>Sign In</a
+							href="/login"
+							class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+							>Sign In</a
 						>
 						<a
-								href="/register"
-								class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
-						>Sign Up</a
+							href="/register"
+							class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+							>Sign Up</a
 						>
 					{/if}
 				</div>
