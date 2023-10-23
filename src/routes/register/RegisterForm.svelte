@@ -6,7 +6,7 @@
 </script>
 
 <div class="bg-bg-200 p-8 rounded-lg shadow-md w-96">
-	<h1 class="text-3xl font-bold mb-4 text-text-100">Register</h1>
+	<h1 class="text-3xl font-bold mb-4 text-text-100">Sign Up</h1>
 
 	<form
 		method="POST"
@@ -77,7 +77,7 @@
 				type="submit"
 				class="w-full p-3 rounded-md bg-primary-200 text-text-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100"
 			>
-				Register
+				Sign Up
 			</Button>
 		{/if}
 	</form>

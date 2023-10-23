@@ -1,19 +1,9 @@
-<script>
+<script lang="ts">
+	import { slide } from 'svelte/transition';
 	import { enhance } from '$app/forms';
-	import { onMount, onDestroy } from 'svelte';
 	import { page } from '$app/stores';
 
 	let isOpen = false;
-
-	onMount(() => {
-		// Add event listener when component mounts
-		window.addEventListener('click', closeDropdown);
-
-		return () => {
-			// Cleanup event listener when component is destroyed
-			onDestroy(window.removeEventListener('click', closeDropdown));
-		};
-	});
 
 	function closeDropdown() {
 		if (isOpen) {
@@ -21,11 +11,13 @@
 		}
 	}
 
-	function toggleDropdown(event) {
-		event.stopPropagation(); // Prevent event from reaching window click listener
+	function toggleDropdown(event: MouseEvent) {
+		event.stopPropagation();
 		isOpen = !isOpen;
 	}
 </script>
+
+<svelte:window on:click={closeDropdown} />
 
 <div class="bg-bg-100 text-text-100 p-3 border-b border-bg-200 shadow-md">
 	<div class="container mx-auto">
@@ -43,30 +35,38 @@
 				</button>
 
 				<!-- Dropdown Menu -->
-				<div
-					class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
-				>
-					{#if $page.data.user}
-						<a href="#" class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100">Profile</a>
-						<a href="/settings" class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100"
+				{#if isOpen}
+					<div
+							class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
+							in:slide={{ duration: 150 }}
+					>
+						{#if $page.data.user}
+							<a
+									href="/settings"
+									class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
 							>Settings</a
-						>
-						<form action="/logout" method="POST" use:enhance>
-							<button
-								type="submit"
-								class="block w-full text-left px-4 py-2 hover:bg-primary-200 hover:text-text-100"
-								>Log out</button
 							>
-						</form>
-					{:else}
-						<a href="/login" class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100"
-							>Login</a
-						>
-						<a href="/register" class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100"
+							<form action="/logout" method="POST" use:enhance>
+								<button
+										type="submit"
+										class="block w-full text-left px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+								>Log out</button
+								>
+							</form>
+						{:else}
+							<a
+									href="/login"
+									class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
+							>Sign In</a
+							>
+							<a
+									href="/register"
+									class="block px-4 py-2 hover:bg-primary-200 hover:text-text-100 transition-colors"
 							>Sign Up</a
-						>
-					{/if}
-				</div>
+							>
+						{/if}
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>

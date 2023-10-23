@@ -11,7 +11,7 @@
 </script>
 
 <div class="bg-bg-200 p-8 rounded-lg shadow-md w-96">
-	<h1 class="text-3xl font-bold mb-4 text-text-100">Log In</h1>
+	<h1 class="text-3xl font-bold mb-4 text-text-100">Sign In</h1>
 
 	<form
 		method="POST"
