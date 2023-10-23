@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import { PUBLIC_API_URL } from '$env/static/public';
 
 async function send({ method, path, data, token }) {
@@ -13,13 +12,7 @@ async function send({ method, path, data, token }) {
 		opts.headers['Authorization'] = `Bearer ${token}`;
 	}
 
-	const res = await fetch(`${PUBLIC_API_URL}/${path}`, opts);
-	if (res.ok || res.status === 422) {
-		const text = await res.text();
-		return text ? JSON.parse(text) : {};
-	}
-
-	throw error(res.status);
+	return await fetch(`${PUBLIC_API_URL}/${path}`, opts);
 }
 
 export function get(path, token) {

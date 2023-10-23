@@ -13,15 +13,15 @@ export const actions: Actions = {
 	default: async ({ request }) => {
 		const data = await request.formData();
 
-		const body = await api.post('users/register', {
+		const res = await api.post('users/register', {
 			name: data.get('name'),
 			email: data.get('email'),
 			password: data.get('password'),
 			password_confirmation: data.get('password_confirmation')
 		});
 
-		if (body.errors) {
-			return fail(401, body);
+		if (!res.ok) {
+			return fail(401, { email: data.get('email') });
 		}
 
 		throw redirect(307, '/');
