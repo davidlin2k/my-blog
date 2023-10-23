@@ -4,9 +4,11 @@ import * as api from '$lib/api';
 /** @type {import('./$types').LayoutServerLoad} */
 export const load: LayoutServerLoad = async ({ locals }) => {
 	if (locals.token) {
-		const body = await api.get('users/me', locals.token);
+		const res = await api.get('users/me', locals.token);
 
-		if (body.data) {
+		if (res.ok) {
+			const body = await res.json();
+
 			return { user: body.data };
 		}
 	}
