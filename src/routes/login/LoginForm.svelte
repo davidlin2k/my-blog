@@ -1,11 +1,13 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Checkbox } from 'flowbite-svelte';
+	import { Checkbox, Spinner, Button } from 'flowbite-svelte';
 
-	import { email, rememberMe } from "../../store"
+	import { email, rememberMe } from '../../store';
 
 	let emailInput = $email;
 	let rememberMeInput = $rememberMe;
+
+	let loading = false;
 </script>
 
 <div class="bg-bg-200 p-8 rounded-lg shadow-md w-96">
@@ -14,7 +16,11 @@
 	<form
 		method="POST"
 		use:enhance={() => {
+			loading = true;
+
 			return async ({ result, update }) => {
+				loading = false;
+
 				if (!rememberMeInput) {
 					email.set('');
 					rememberMe.set(false);
@@ -58,12 +64,21 @@
 			<Checkbox class="text-text-200" bind:checked={rememberMeInput}>Remember me</Checkbox>
 		</div>
 
-		<button
-			type="submit"
-			name="submit"
-			class="w-full p-3 rounded-md bg-primary-200 text-text-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100"
-		>
-			Sign In
-		</button>
+		{#if loading}
+			<Button
+				disabled
+				class="w-full bg-primary-200 text-text-100 hover:bg-primary-100"
+			>
+				<Spinner class="mr-3" size="4" color="white" />
+				<span>Signing in...</span>
+			</Button>
+		{:else}
+			<Button
+				type="submit"
+				class="w-full bg-primary-200 text-text-100 hover:bg-primary-100"
+			>
+				Sign In
+			</Button>
+		{/if}
 	</form>
 </div>
