@@ -1,5 +1,4 @@
-<script>
-	import { page } from '$app/stores';
+<script lang="ts">
 	import BlogGrid from '$components/BlogGrid.svelte';
 </script>
 
