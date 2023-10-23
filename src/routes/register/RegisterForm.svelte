@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Spinner, Button } from "flowbite-svelte";
+	import { Spinner, Button } from 'flowbite-svelte';
 
 	let loading = false;
 </script>
@@ -66,16 +66,16 @@
 
 		{#if loading}
 			<Button
-					disabled
-					class="w-full p-3 rounded-md bg-primary-200 text-text-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100"
+				disabled
+				class="w-full p-3 rounded-md bg-primary-200 text-text-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100"
 			>
 				<Spinner class="mr-3" size="4" color="white" />
 				<span>Loading...</span>
 			</Button>
 		{:else}
 			<Button
-					type="submit"
-					class="w-full p-3 rounded-md bg-primary-200 text-text-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100"
+				type="submit"
+				class="w-full p-3 rounded-md bg-primary-200 text-text-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100"
 			>
 				Register
 			</Button>

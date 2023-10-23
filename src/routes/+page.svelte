@@ -1,11 +1,10 @@
 <script>
 	import { page } from '$app/stores';
+	import BlogGrid from '$components/BlogGrid.svelte';
 </script>
 
-<div>
-	{#if $page.data.user}
-		<h1>Welcome, {$page.data.user.name}</h1>
-	{:else}
-		<h1>Welcome, guest</h1>
-	{/if}
+<div class="p-3">
+	<div class="container m-auto">
+		<BlogGrid />
+	</div>
 </div>

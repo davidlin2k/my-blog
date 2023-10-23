@@ -65,18 +65,12 @@
 		</div>
 
 		{#if loading}
-			<Button
-				disabled
-				class="w-full bg-primary-200 text-text-100 hover:bg-primary-100"
-			>
+			<Button disabled class="w-full bg-primary-200 text-text-100 hover:bg-primary-100">
 				<Spinner class="mr-3" size="4" color="white" />
 				<span>Signing in...</span>
 			</Button>
 		{:else}
-			<Button
-				type="submit"
-				class="w-full bg-primary-200 text-text-100 hover:bg-primary-100"
-			>
+			<Button type="submit" class="w-full bg-primary-200 text-text-100 hover:bg-primary-100">
 				Sign In
 			</Button>
 		{/if}
