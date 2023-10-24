@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
 
+	export let slug: string;
 	export let thumbnail: string;
 	export let title: string;
 	export let date: string;
 </script>
 
-<a href="/">
+<a href={`/blogs/${slug}`}>
 	<div
 		class="max-w-sm sm:max-w-none h-full m-auto bg-bg-300 rounded-md overflow-hidden shadow-lg hover:bg-primary-100 transition-colors"
 	>
