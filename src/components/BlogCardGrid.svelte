@@ -10,7 +10,6 @@
 			slug={blog.id}
 			title={blog.title}
 			date={blog.created_at}
-			thumbnail="https://placehold.co/600x400/"
 		/>
 	{/each}
 </div>

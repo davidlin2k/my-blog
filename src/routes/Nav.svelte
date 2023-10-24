@@ -26,7 +26,7 @@
 
 			<div class="flex items-center">
 				<!-- New blog -->
-				{#if $page.data.user.is_admin}
+				{#if $page.data.user?.is_admin}
 					<form action="/blogs" method="POST" use:enhance>
 						<button
 							type="submit"
