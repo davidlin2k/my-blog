@@ -1,7 +1,7 @@
 <script lang="ts">
     import { formatDate } from "$lib/utils";
 
-    import {Spinner} from "flowbite-svelte";
+    import { Breadcrumb, BreadcrumbItem, Spinner } from "flowbite-svelte";
     import { CalendarMonthSolid } from "flowbite-svelte-icons";
 
     import Editor from "$components/Editor.svelte";
@@ -11,7 +11,7 @@
     /** @type {import('./$types').PageData} */
     export let data: any;
 
-    let title = data.title ?? "";
+    let title = data.title;
     let saving = false;
 
     async function onSave(event: CustomEvent) {
@@ -35,11 +35,18 @@
 </script>
 
 <svelte:head>
-    <title>{title}</title>
+    <title>{data.title ?? "Untitled"}</title>
 </svelte:head>
 
 <div class="max-w-3xl p-8 m-auto">
-    <div class="flex items-center">
+    <div class="flex items-center mb-3">
+        <Breadcrumb>
+            <BreadcrumbItem homeClass="inline-flex items-center text-sm font-medium text-text-100 hover:text-text-200" href="/" home>Home</BreadcrumbItem>
+            <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis hover:text-text-200 md:ml-2" href={`/blogs/${data.id}`}>{title ?? 'Untitled'}</BreadcrumbItem>
+            <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 hover:text-text-200 md:ml-2">Edit</BreadcrumbItem>
+        </Breadcrumb>
+
+
         {#if saving}
             <Spinner class="ml-auto mr-3" size="4" color="white" />
             <span>Saving...</span>
@@ -48,8 +55,8 @@
         {/if}
     </div>
 
-    <div class="block text-5xl p-2 py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" placeholder="Untitled" bind:textContent={title}>{title}</div>
-    <div class="flex items-center text-text-200 p-2 py-4 my-4 border-b border-bg-300">
+    <div class="block text-5xl py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" placeholder="Untitled" bind:textContent={title}>{title}</div>
+    <div class="flex items-center text-text-200 py-4 my-4 border-b border-bg-300">
         <CalendarMonthSolid class="w-4 h-4 m-2" />
         <div>Date</div>
 
