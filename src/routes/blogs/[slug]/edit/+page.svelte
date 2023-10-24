@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { capitalizeFirstLetter, formatDate } from "$lib/utils";
+    import { formatDate } from "$lib/utils";
 
     import { Breadcrumb, BreadcrumbItem, Spinner, Select } from "flowbite-svelte";
     import { CalendarMonthSolid, EyeSolid } from "flowbite-svelte-icons";
