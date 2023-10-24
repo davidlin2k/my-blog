@@ -26,7 +26,7 @@
         {/if}
     </div>
 
-    <div class="text-5xl font-semibold py-4">{data.title ?? "Untitled"}</div>
+    <div class="text-3xl md:text-4xl font-semibold py-4">{data.title ?? "Untitled"}</div>
     <div class="flex items-center text-text-200 py-4 my-4 border-b border-bg-300">
         <CalendarMonthSolid class="w-4 h-4 m-2" />
         <div>Date</div>
