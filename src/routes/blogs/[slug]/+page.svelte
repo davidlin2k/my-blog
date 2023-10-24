@@ -21,7 +21,7 @@
             <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 hover:text-text-200 md:ml-2" spanClass="ml-1 text-sm font-medium max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis text-gray-500 md:ml-2">{data.title ?? 'Untitled'}</BreadcrumbItem>
         </Breadcrumb>
 
-        {#if data.user_id === $page.data.user.id}
+        {#if data.user_id === $page.data.user?.id}
             <a class="ml-auto" href={`/blogs/${data.id}/edit`}>Edit</a>
         {/if}
     </div>
