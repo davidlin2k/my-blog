@@ -1,0 +1,25 @@
+
+.ce-block__content,
+.ce-toolbar__content {
+    max-width: none;
+}
+
+.ce-toolbar__actions > * {
+    @apply text-text-100 bg-bg-200 border-bg-300;
+}
+
+.cdx-search-field, .ce-toolbar__actions > *:hover, .ce-popover-item:hover, .ce-inline-tool:hover {
+    @apply bg-bg-300 !important;
+}
+
+.ce-popover, .ce-popover-item, .ce-popover-item__icon, .ce-inline-toolbar {
+    @apply text-text-100 bg-bg-200 border-bg-300;
+}
+
+.ce-inline-tool--active {
+    @apply text-primary-200;
+}
+
+.ce-block--selected .ce-block__content {
+    @apply bg-bg-300 !important;
+}
