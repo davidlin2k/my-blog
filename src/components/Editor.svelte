@@ -11,11 +11,15 @@
 
     onMount(async () => {
         const EditorJS = await import('@editorjs/editorjs');
+        const Header = await import('@editorjs/header');
+
         editor = new EditorJS.default({
             holder: 'editor',
             placeholder: 'Type something...',
             readOnly: readOnly,
-            tools: {},
+            tools: {
+                header: Header.default
+            },
             data: data
         });
     });
