@@ -1,8 +1,8 @@
 <script lang="ts">
     import { formatDate } from "$lib/utils";
 
-    import { Breadcrumb, BreadcrumbItem, Spinner } from "flowbite-svelte";
-    import { CalendarMonthSolid } from "flowbite-svelte-icons";
+    import { Breadcrumb, BreadcrumbItem, Spinner, Select } from "flowbite-svelte";
+    import { CalendarMonthSolid, EyeSolid } from "flowbite-svelte-icons";
 
     import Editor from "$components/Editor.svelte";
 
@@ -11,7 +11,14 @@
     /** @type {import('./$types').PageData} */
     export let data: any;
 
-    let title = data.title;
+    let title = data.title ?? "";
+    let status = data.status ?? "";
+
+    let statusSelections = [
+        { value: 'draft', name: 'Draft' },
+        { value: 'published', name: 'Published' },
+    ];
+
     let saving = false;
 
     async function onSave(event: CustomEvent) {
@@ -25,7 +32,8 @@
             body: JSON.stringify({
                 blog: {
                     title,
-                    content: event.detail
+                    status,
+                    content: event.detail,
                 }
             })
         });
@@ -55,12 +63,35 @@
         {/if}
     </div>
 
-    <div class="block text-5xl py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" placeholder="Untitled" bind:textContent={title}>{title}</div>
-    <div class="flex items-center text-text-200 py-4 my-4 border-b border-bg-300">
-        <CalendarMonthSolid class="w-4 h-4 m-2" />
-        <div>Date</div>
+    <div class="block text-3xl md:text-4xl py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" placeholder="Untitled" bind:textContent={title}>{title}</div>
 
-        <div class="ml-16">{formatDate(data.created_at)}</div>
+    <div class="mb-4 border-b border-bg-300">
+        <table class="table-auto w-full border-spacing-y-4 border-separate">
+            <tbody>
+                <tr class="items-center text-text-200">
+                    <td class="flex items-center">
+                        <CalendarMonthSolid class="w-4 h-4 mr-2" />
+                        <div>Date</div>
+                    </td>
+
+                    <td>{formatDate(data.created_at)}</td>
+                </tr>
+                <tr class="items-center text-text-200">
+                    <td class="flex items-center">
+                        <EyeSolid class="w-4 h-4 mr-2" />
+                        <div>Status</div>
+                    </td>
+
+                    <td>
+                        <Select id="countries" class="p-0 bg-transparent border-0 focus:ring-0 text-text-100 inline-block w-auto" defaultClass="" bind:value={status} placeholder="Select a status...">
+                            {#each statusSelections as { value, name }}
+                                <option {value}>{name}</option>
+                            {/each}
+                        </Select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <Editor data={data.content} bind:this={editorComponent} on:save={onSave}/>
