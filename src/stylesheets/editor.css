@@ -23,3 +23,15 @@
 .ce-block--selected .ce-block__content {
     @apply bg-bg-300 !important;
 }
+
+.cdx-button {
+    @apply text-text-100 bg-bg-200 border-bg-300;
+}
+
+.cdx-button:hover {
+    @apply text-text-100 bg-primary-200;
+}
+
+.image-tool--loading .image-tool__image {
+    @apply bg-bg-200 border-bg-300 !important;
+}
