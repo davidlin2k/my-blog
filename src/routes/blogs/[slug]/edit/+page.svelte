@@ -11,7 +11,7 @@
     /** @type {import('./$types').PageData} */
     export let data: any;
 
-    let title = data.title;
+    let title = data.title ?? "";
     let saving = false;
 
     async function onSave(event: CustomEvent) {
@@ -48,7 +48,7 @@
         {/if}
     </div>
 
-    <div class="block text-5xl p-2 py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" bind:textContent={title}>{title}</div>
+    <div class="block text-5xl p-2 py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" placeholder="Untitled" bind:textContent={title}>{title}</div>
     <div class="flex items-center text-text-200 p-2 py-4 my-4 border-b border-bg-300">
         <CalendarMonthSolid class="w-4 h-4 m-2" />
         <div>Date</div>

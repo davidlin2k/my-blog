@@ -9,3 +9,10 @@
 		@apply text-text-100 bg-bg-100;
 	}
 }
+
+[contenteditable=true]:empty:before {
+	content: attr(placeholder);
+	pointer-events: none;
+	display: block;
+	color: #707684;
+}
