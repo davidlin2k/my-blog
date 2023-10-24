@@ -1,11 +1,9 @@
 <script lang="ts">
+	import { formatDate } from '$lib/utils';
+
 	export let thumbnail: string;
 	export let title: string;
-	export let date = new Date();
-
-	const formatDate = (date: Date) => {
-		return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-	};
+	export let date: string;
 </script>
 
 <a href="/">

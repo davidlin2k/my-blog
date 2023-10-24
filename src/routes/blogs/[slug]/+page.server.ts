@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 import * as api from '$lib/api';
 
 export const load: PageServerLoad = async ({ locals, params }) => {
-	const res = await api.get(`blog/${params.slug}`, locals.token);
+	const res = await api.get(`blogs/${params.slug}`, locals.token);
 
 	if (res.ok) {
 		const body = await res.json();

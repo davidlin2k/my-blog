@@ -1,7 +1,9 @@
 <script>
-	/** @type {import('./$types').PageData} */
+    import { formatDate } from "$lib/utils";
+
+    /** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
 <h1>{data.title}</h1>
-<div>{@html data.content}</div>
+<div>{formatDate(data.created_at)}</div>
