@@ -6,4 +6,4 @@
     let html = "";
 </script>
 
-<div class={className} contenteditable="true" bind:innerHTML={html} on:input={() => {if (html === '<br>') html = "" }} placeholder={placeholder} bind:textContent={value}>{value}</div>
+<div class={`${className} div-input`} contenteditable="true" bind:innerHTML={html} on:input={() => {if (html === '<br>') html = "" }} data-placeholder={placeholder} bind:textContent={value}>{value}</div>

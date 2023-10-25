@@ -34,8 +34,8 @@
 	}
 }
 
-[contenteditable=true]:empty:before {
-	content: attr(placeholder);
+.div-input[contenteditable=true]:empty:before {
+	content: attr(data-placeholder);
 	pointer-events: none;
 	display: block;
 	color: #707684;

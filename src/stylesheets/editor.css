@@ -35,3 +35,7 @@
 .image-tool--loading .image-tool__image {
     @apply bg-bg-200 border-bg-300 !important;
 }
+
+.codex-editor ::selection {
+    @apply bg-accent-200;
+}
