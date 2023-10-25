@@ -5,7 +5,7 @@
     const dispatch = createEventDispatcher();
 
     export let readOnly = false;
-    export let data;
+    export let data = {};
 
     let editor;
 
@@ -13,6 +13,8 @@
         const EditorJS = await import('@editorjs/editorjs');
         const Header = await import('@editorjs/header');
         const ImageTool = await import('@editorjs/image');
+        const NestedList = await import('@editorjs/nested-list');
+        const CodeTool = await import('@editorjs/code');
 
         editor = new EditorJS.default({
             holder: 'editor',
@@ -28,7 +30,12 @@
                             byUrl: '/api/upload/image',
                         },
                     }
-                }
+                },
+                list: {
+                    class: NestedList.default,
+                    inlineToolbar: true,
+                },
+                code: CodeTool.default,
             },
             data: data
         });
