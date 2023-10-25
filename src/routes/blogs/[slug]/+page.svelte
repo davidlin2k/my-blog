@@ -1,7 +1,7 @@
 <script>
     import { page } from '$app/stores';
 
-    import { formatDate, capitalizeFirstLetter } from "$lib/utils";
+    import {formatDate, capitalizeFirstLetter, isEmptyString } from "$lib/utils";
     import {CalendarMonthSolid, EyeSolid} from "flowbite-svelte-icons";
     import Editor from "$components/Editor.svelte";
     import {Breadcrumb, BreadcrumbItem, Spinner} from "flowbite-svelte";
@@ -18,7 +18,7 @@
     <div class="flex items-center mb-3">
         <Breadcrumb>
             <BreadcrumbItem homeClass="inline-flex items-center text-sm font-medium text-text-100 hover:text-text-200" href="/" home>Home</BreadcrumbItem>
-            <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 hover:text-text-200 md:ml-2" spanClass="ml-1 text-sm font-medium max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis text-gray-500 md:ml-2">{data.title ?? 'Untitled'}</BreadcrumbItem>
+            <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 hover:text-text-200 md:ml-2" spanClass="ml-1 text-sm font-medium max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis text-gray-500 md:ml-2">{isEmptyString(data.title) ? 'Untitled' : data.title}</BreadcrumbItem>
         </Breadcrumb>
 
         {#if data.user_id === $page.data.user?.id}
@@ -26,7 +26,7 @@
         {/if}
     </div>
 
-    <div class="text-3xl md:text-4xl font-semibold py-4">{data.title ?? "Untitled"}</div>
+    <div class="text-3xl md:text-4xl font-semibold py-4">{isEmptyString(data.title) ? 'Untitled' : data.title}</div>
 
     <div class="mb-4 border-b border-bg-300">
         <table class="table-auto w-full border-spacing-y-4 border-separate">
