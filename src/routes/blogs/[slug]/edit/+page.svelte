@@ -1,11 +1,14 @@
 <script lang="ts">
-    import { formatDate } from "$lib/utils";
+    import { formatDate, isEmptyString } from "$lib/utils";
 
     import { Breadcrumb, BreadcrumbItem, Spinner, Select } from "flowbite-svelte";
     import { CalendarMonthSolid, EyeSolid } from "flowbite-svelte-icons";
 
+    import DivInput from "$components/DivInput.svelte";
+
     import Editor from "$components/Editor.svelte";
 
+    let titleComponent: any;
     let editorComponent: any;
 
     /** @type {import('./$types').PageData} */
@@ -50,20 +53,19 @@
     <div class="flex items-center mb-3">
         <Breadcrumb>
             <BreadcrumbItem homeClass="inline-flex items-center text-sm font-medium text-text-100 hover:text-text-200" href="/" home>Home</BreadcrumbItem>
-            <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis hover:text-text-200 md:ml-2" href={`/blogs/${data.id}`}>{title ?? 'Untitled'}</BreadcrumbItem>
+            <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis hover:text-text-200 md:ml-2" href={`/blogs/${data.id}`}>{isEmptyString(title) ? 'Untitled' : title}</BreadcrumbItem>
             <BreadcrumbItem linkClass="ml-1 text-sm font-medium text-text-100 hover:text-text-200 md:ml-2">Edit</BreadcrumbItem>
         </Breadcrumb>
 
 
         {#if saving}
-            <Spinner class="ml-auto mr-3" size="4" color="white" />
-            <span>Saving...</span>
+            <Spinner class="ml-auto" size="4" color="white" />
         {:else}
             <button class="ml-auto" on:click={() => editorComponent.save()}>Save</button>
         {/if}
     </div>
 
-    <div class="block text-3xl md:text-4xl py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" contenteditable="true" placeholder="Untitled" bind:textContent={title}>{title}</div>
+    <DivInput className="block text-3xl md:text-4xl py-4 font-semibold bg-transparent border-none focus:ring-0 focus:outline-none" placeholder="Untitled" bind:value={title}>{title}</DivInput>
 
     <div class="mb-4 border-b border-bg-300">
         <table class="table-auto w-full border-spacing-y-4 border-separate">

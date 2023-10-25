@@ -12,8 +12,8 @@
     @apply bg-bg-300 !important;
 }
 
-.ce-popover, .ce-popover-item, .ce-popover-item__icon, .ce-conversion-tool__icon, .ce-inline-toolbar, .ce-conversion-toolbar {
-    @apply text-text-100 bg-bg-200 border-bg-300;
+.ce-popover, .ce-popover-item, .ce-popover-item__icon, .ce-conversion-tool__icon, .ce-inline-toolbar, .ce-conversion-toolbar, .ce-code__textarea {
+    @apply text-text-100 bg-bg-200 border-bg-300 !important;
 }
 
 .ce-inline-tool--active {
@@ -34,4 +34,8 @@
 
 .image-tool--loading .image-tool__image {
     @apply bg-bg-200 border-bg-300 !important;
+}
+
+.codex-editor ::selection {
+    @apply bg-accent-200;
 }
