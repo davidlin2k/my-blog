@@ -8,7 +8,7 @@ export const POST: RequestHandler = async ({ request, params, locals }) => {
 
     console.log('requestBody', requestBody);
 
-    const res = await fetch(`${PUBLIC_API_URL}/rails/active_storage/direct_uploads`, {
+    const res = await fetch(`${PUBLIC_API_URL}/api/storage/direct_uploads`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

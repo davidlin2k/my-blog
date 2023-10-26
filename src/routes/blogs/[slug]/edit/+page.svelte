@@ -75,7 +75,7 @@
 <DirectUploadInput updateResourceBody={updateResourceBody} directUploadUrl="/files" id="cover-image-input" bind:directUpload={directUpload} bind:files={files} />
 
 <label for="cover-image-input" class="hover:cursor-pointer">
-    <img class="w-screen h-32 sm:h-40 object-cover" src={ isEmptyString(coverImage) ? placeholder : coverImage } alt="Cover" />
+    <img class="w-screen h-[30vh] object-cover" src={ isEmptyString(coverImage) ? placeholder : coverImage } alt="Cover" />
 </label>
 
 <div class="max-w-3xl px-8 py-4 m-auto">
