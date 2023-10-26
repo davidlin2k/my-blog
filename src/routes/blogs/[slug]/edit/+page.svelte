@@ -112,7 +112,7 @@
                 return {
                     success: 1,
                     file: {
-                        url: `${PUBLIC_API_URL}/api/blogs/${data.id}/files/${res.id}`,
+                        url: `${PUBLIC_API_URL}/blogs/${data.id}/files/${res.id}`,
                     }
                 };
             }
