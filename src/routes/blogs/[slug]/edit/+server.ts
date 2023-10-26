@@ -5,7 +5,6 @@ import * as api from '$lib/api';
 
 export const PUT: RequestHandler = async ({ request, params, locals }) => {
     const requestBody = await request.json();
-    console.log(requestBody);
     const res = await api.put(`blogs/${params.slug}`, requestBody, locals.token);
 
     if (res.ok) {
