@@ -16,12 +16,16 @@
     @apply text-text-100 bg-bg-200 border-bg-300 !important;
 }
 
-.cdx-search-field, .ce-toolbar__actions > *:hover, .ce-popover-item:hover, .ce-inline-tool:hover, .ce-inline-toolbar__dropdown:hover, .ce-conversion-toolbar__tools:hover, .ce-popover-item--active {
+.cdx-search-field, .ce-toolbar__actions > *:hover, .ce-popover-item:hover, .ce-inline-tool:hover, .ce-conversion-tool:hover, .ce-inline-toolbar__dropdown:hover, .ce-popover-item--active {
     @apply bg-bg-300 !important;
 }
 
 .ce-inline-tool--active {
     @apply text-primary-200;
+}
+
+.ce-conversion-tool--focused {
+    @apply bg-bg-200 shadow-none !important;
 }
 
 .ce-block--selected .ce-block__content {
