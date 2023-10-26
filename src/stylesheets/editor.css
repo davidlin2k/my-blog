@@ -8,12 +8,16 @@
     @apply text-text-100 bg-bg-200 border-bg-300;
 }
 
-.cdx-search-field, .ce-toolbar__actions > *:hover, .ce-popover-item:hover, .ce-inline-tool:hover, .ce-inline-toolbar__dropdown:hover, .ce-conversion-toolbar__tools:hover, .ce-popover-item--active {
-    @apply bg-bg-300 !important;
+.cdx-button, .ce-popover-item {
+    @apply text-text-100 bg-bg-200 border-bg-300;
 }
 
-.ce-popover, .ce-popover-item, .ce-popover-item__icon, .ce-conversion-tool__icon, .ce-inline-toolbar, .ce-conversion-toolbar, .ce-code__textarea {
+.ce-popover, .ce-popover-item__icon, .ce-conversion-tool__icon, .ce-inline-toolbar, .ce-conversion-toolbar, .ce-code__textarea {
     @apply text-text-100 bg-bg-200 border-bg-300 !important;
+}
+
+.cdx-search-field, .ce-toolbar__actions > *:hover, .ce-popover-item:hover, .ce-inline-tool:hover, .ce-inline-toolbar__dropdown:hover, .ce-conversion-toolbar__tools:hover, .ce-popover-item--active {
+    @apply bg-bg-300 !important;
 }
 
 .ce-inline-tool--active {
@@ -22,10 +26,6 @@
 
 .ce-block--selected .ce-block__content {
     @apply bg-bg-300 !important;
-}
-
-.cdx-button {
-    @apply text-text-100 bg-bg-200 border-bg-300;
 }
 
 .cdx-button:hover {
@@ -38,4 +38,12 @@
 
 .codex-editor ::selection {
     @apply bg-accent-200;
+}
+
+.image-tool__caption[contenteditable=true]:empty:before {
+    color: #707684;
+}
+
+.image-tool__caption {
+    border: none;
 }

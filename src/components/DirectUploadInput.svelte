@@ -1,5 +1,5 @@
 <script lang="ts">
-    import CryptoJS from 'crypto-js';
+    import { getFileMd5 } from "$lib/utils";
 
     export let directUploadUrl = '/files';
     export let resourceUrl = '';
@@ -10,20 +10,6 @@
     }
 
     export let files: any = null;
-
-    const getFileMd5 = (file: File) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-
-            reader.onload = function(event) {
-                const binary = event.target?.result;
-                const md5 = CryptoJS.MD5(CryptoJS.enc.Latin1.parse(binary)).toString(CryptoJS.enc.Base64);
-                resolve(md5);
-            };
-
-            reader.readAsBinaryString(file);
-        });
-    }
 
     export const directUpload = async () => {
         if (!files) return;
