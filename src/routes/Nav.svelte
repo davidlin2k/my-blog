@@ -18,7 +18,7 @@
 
 <svelte:window on:click={closeDropdown} />
 
-<div class="bg-bg-100 text-text-100 p-3 border-b border-bg-200 shadow-md">
+<div class="bg-bg-100 text-text-100 p-2 border-b border-bg-200 shadow-md">
 	<div class="container mx-auto">
 		<div class="flex justify-between items-center">
 			<!-- Branding -->

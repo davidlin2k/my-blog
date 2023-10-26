@@ -15,7 +15,7 @@
 </svelte:head>
 
 {#if data.cover_image_url}
-    <img class="w-screen h-32 sm:h-40 object-cover" src={data.cover_image_url} alt="Writing" />
+    <img class="w-screen h-[30vh] object-cover" src={data.cover_image_url} alt="Writing" />
 {/if}
 
 <div class="max-w-3xl px-8 py-4 m-auto">
