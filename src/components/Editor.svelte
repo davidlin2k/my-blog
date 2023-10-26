@@ -6,6 +6,7 @@
 
     export let readOnly = false;
     export let data = {};
+    export let uploadByFile;
 
     let editor;
 
@@ -29,6 +30,9 @@
                             byFile: '/api/upload/image',
                             byUrl: '/api/upload/image',
                         },
+                        uploader: {
+                            uploadByFile,
+                        }
                     }
                 },
                 list: {

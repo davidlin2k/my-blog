@@ -1,5 +1,7 @@
 <script lang="ts">
-    import { formatDate, isEmptyString } from "$lib/utils";
+    import { PUBLIC_API_URL } from '$env/static/public';
+
+    import { formatDate, isEmptyString, getFileMd5 } from "$lib/utils";
     import placeholder from '$lib/assets/placeholder.jpg';
 
     import { Breadcrumb, BreadcrumbItem, Spinner, Select } from "flowbite-svelte";
@@ -29,21 +31,29 @@
     async function onSave(event: CustomEvent) {
         saving = true;
 
-        await directUpload();
+        try {
+            await directUpload();
+        } catch (error) {
+            console.log(error);
+        }
 
-        await fetch("", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                blog: {
-                    title,
-                    status,
-                    content: event.detail,
-                }
-            })
-        });
+        try {
+            await fetch("", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    blog: {
+                        title,
+                        status,
+                        content: event.detail,
+                    }
+                })
+            });
+        } catch (error) {
+            console.log(error);
+        }
 
         saving = false;
     }
@@ -65,6 +75,53 @@
             coverImage = reader.result;
         });
         reader.readAsDataURL(files[0]);
+    }
+
+    const uploadByFile = async (file: any) => {
+        const md5 = await getFileMd5(file);
+
+        const blob = {
+            blob: {
+                filename: file.name,
+                byte_size: file.size,
+                content_type: file.type,
+                checksum: md5,
+            }
+        }
+
+        const directUpload = await fetch('/files', {
+            method: 'POST',
+            body: JSON.stringify(blob),
+        });
+
+        const res = await directUpload.json();
+
+        const s3 = await fetch(res.direct_upload.url, {
+            method: 'PUT',
+            headers: res.direct_upload.headers,
+            body: file,
+        });
+
+        if (s3.ok) {
+            const resource = await fetch("", {
+                method: 'PUT',
+                body: JSON.stringify({ blog: { files: [res.signed_id] } }),
+            });
+
+            if (resource.ok) {
+                return {
+                    success: 1,
+                    file: {
+                        url: `${PUBLIC_API_URL}/api/blogs/${data.id}/files/${res.id}`,
+                    }
+                };
+            }
+        }
+
+        return {
+            success: 0,
+            message: 'Upload failed',
+        };
     }
 </script>
 
@@ -125,5 +182,5 @@
         </table>
     </div>
 
-    <Editor data={data.content} bind:this={editorComponent} on:save={onSave} />
+    <Editor data={data.content} uploadByFile={uploadByFile} bind:this={editorComponent} on:save={onSave} />
 </div>
