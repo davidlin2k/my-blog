@@ -14,7 +14,11 @@
     <title>{data.title ?? "Untitled"}</title>
 </svelte:head>
 
-<div class="max-w-3xl p-8 m-auto">
+{#if data.cover_image_url}
+    <img class="w-screen h-32 sm:h-40 object-cover" src={data.cover_image_url} alt="Writing" />
+{/if}
+
+<div class="max-w-3xl px-8 py-4 m-auto">
     <div class="flex items-center mb-3">
         <Breadcrumb>
             <BreadcrumbItem homeClass="inline-flex items-center text-sm font-medium text-text-100 hover:text-text-200" href="/" home>Home</BreadcrumbItem>

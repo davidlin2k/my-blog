@@ -1,5 +1,6 @@
 <script lang="ts">
     import { formatDate, isEmptyString } from "$lib/utils";
+    import placeholder from '$lib/assets/placeholder.jpg';
 
     import { Breadcrumb, BreadcrumbItem, Spinner, Select } from "flowbite-svelte";
     import { CalendarMonthSolid, EyeSolid } from "flowbite-svelte-icons";
@@ -7,8 +8,8 @@
     import DivInput from "$components/DivInput.svelte";
 
     import Editor from "$components/Editor.svelte";
+    import DirectUploadInput from "$components/DirectUploadInput.svelte";
 
-    let titleComponent: any;
     let editorComponent: any;
 
     /** @type {import('./$types').PageData} */
@@ -16,6 +17,7 @@
 
     let title = data.title ?? "";
     let status = data.status ?? "";
+    let coverImage = data.cover_image_url ?? "";
 
     let statusSelections = [
         { value: 'draft', name: 'Draft' },
@@ -26,6 +28,8 @@
 
     async function onSave(event: CustomEvent) {
         saving = true;
+
+        await directUpload();
 
         await fetch("", {
             method: "PUT",
@@ -43,13 +47,38 @@
 
         saving = false;
     }
+
+    const updateResourceBody = (signed_id: string) => {
+        return {
+            blog: {
+                cover_image: signed_id
+            }
+        }
+    }
+
+    let directUpload: any;
+    let files: any;
+
+    $: if (files) {
+        const reader = new FileReader();
+        reader.addEventListener("load", function () {
+            coverImage = reader.result;
+        });
+        reader.readAsDataURL(files[0]);
+    }
 </script>
 
 <svelte:head>
     <title>{data.title ?? "Untitled"}</title>
 </svelte:head>
 
-<div class="max-w-3xl p-8 m-auto">
+<DirectUploadInput updateResourceBody={updateResourceBody} directUploadUrl="/files" id="cover-image-input" bind:directUpload={directUpload} bind:files={files} />
+
+<label for="cover-image-input" class="hover:cursor-pointer">
+    <img class="w-screen h-32 sm:h-40 object-cover" src={ isEmptyString(coverImage) ? placeholder : coverImage } alt="Cover" />
+</label>
+
+<div class="max-w-3xl px-8 py-4 m-auto">
     <div class="flex items-center mb-3">
         <Breadcrumb>
             <BreadcrumbItem homeClass="inline-flex items-center text-sm font-medium text-text-100 hover:text-text-200" href="/" home>Home</BreadcrumbItem>
@@ -96,5 +125,5 @@
         </table>
     </div>
 
-    <Editor data={data.content} bind:this={editorComponent} on:save={onSave}/>
+    <Editor data={data.content} bind:this={editorComponent} on:save={onSave} />
 </div>

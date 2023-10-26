@@ -10,6 +10,7 @@
 			slug={blog.id}
 			title={blog.title}
 			date={blog.created_at}
+			thumbnail={blog.cover_image_url}
 		/>
 	{/each}
 </div>
