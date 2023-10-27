@@ -5,4 +5,10 @@
 	export let data: PageData;
 </script>
 
-<Blogs blogs={data.blogs} />
+{#await data.blogs}
+    Loading...
+{:then value}
+    <Blogs blogs={value.data} />
+{:catch error}
+    Error :(
+{/await}

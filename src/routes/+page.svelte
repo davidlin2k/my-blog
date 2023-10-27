@@ -9,4 +9,10 @@
 	<title>David's Blog</title>
 </svelte:head>
 
-<Blogs blogs={data.blogs} />
+{#await data.blogs}
+	Loading...
+{:then value}
+	<Blogs blogs={value.data} />
+{:catch error}
+	Error :(
+{/await}

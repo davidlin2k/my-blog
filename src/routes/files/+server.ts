@@ -6,8 +6,6 @@ import { PUBLIC_API_URL } from '$env/static/public';
 export const POST: RequestHandler = async ({ request, params, locals }) => {
 	const requestBody = await request.json();
 
-	console.log('requestBody', requestBody);
-
 	const res = await fetch(`${PUBLIC_API_URL}/api/storage/direct_uploads`, {
 		method: 'POST',
 		headers: {
