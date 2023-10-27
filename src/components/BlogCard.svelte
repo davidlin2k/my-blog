@@ -1,12 +1,11 @@
 <script lang="ts">
-	import {formatDate, isEmptyString} from '$lib/utils';
+	import { formatDate, isEmptyString } from '$lib/utils';
 	import placeholder from '$lib/assets/placeholder.jpg';
 
 	export let slug: string;
 	export let thumbnail = placeholder;
 	export let title: string;
 	export let date: string;
-
 </script>
 
 <a href={`/blogs/${slug}`}>

@@ -1,53 +1,64 @@
-
 .ce-block__content,
 .ce-toolbar__content {
-    max-width: none;
+	max-width: none;
 }
 
 .ce-toolbar__actions > * {
-    @apply text-text-100 bg-bg-200 border-bg-300;
+	@apply text-text-100 bg-bg-200 border-bg-300;
 }
 
-.cdx-button, .ce-popover-item {
-    @apply text-text-100 bg-bg-200 border-bg-300;
+.cdx-button,
+.ce-popover-item {
+	@apply text-text-100 bg-bg-200 border-bg-300;
 }
 
-.ce-popover, .ce-popover-item__icon, .ce-conversion-tool__icon, .ce-inline-toolbar, .ce-conversion-toolbar, .ce-code__textarea {
-    @apply text-text-100 bg-bg-200 border-bg-300 !important;
+.ce-popover,
+.ce-popover-item__icon,
+.ce-conversion-tool__icon,
+.ce-inline-toolbar,
+.ce-conversion-toolbar,
+.ce-code__textarea {
+	@apply text-text-100 bg-bg-200 border-bg-300 !important;
 }
 
-.cdx-search-field, .ce-toolbar__actions > *:hover, .ce-popover-item:hover, .ce-inline-tool:hover, .ce-conversion-tool:hover, .ce-inline-toolbar__dropdown:hover, .ce-popover-item--active {
-    @apply bg-bg-300 !important;
+.cdx-search-field,
+.ce-toolbar__actions > *:hover,
+.ce-popover-item:hover,
+.ce-inline-tool:hover,
+.ce-conversion-tool:hover,
+.ce-inline-toolbar__dropdown:hover,
+.ce-popover-item--active {
+	@apply bg-bg-300 !important;
 }
 
 .ce-inline-tool--active {
-    @apply text-primary-200;
+	@apply text-primary-200;
 }
 
 .ce-conversion-tool--focused {
-    @apply bg-bg-200 shadow-none !important;
+	@apply bg-bg-200 shadow-none !important;
 }
 
 .ce-block--selected .ce-block__content {
-    @apply bg-bg-300 !important;
+	@apply bg-bg-300 !important;
 }
 
 .cdx-button:hover {
-    @apply text-text-100 bg-primary-200;
+	@apply text-text-100 bg-primary-200;
 }
 
 .image-tool--loading .image-tool__image {
-    @apply bg-bg-200 border-bg-300 !important;
+	@apply bg-bg-200 border-bg-300 !important;
 }
 
 .codex-editor ::selection {
-    @apply bg-accent-200;
+	@apply bg-accent-200;
 }
 
-.image-tool__caption[contenteditable=true]:empty:before {
-    color: #707684;
+.image-tool__caption[contenteditable='true']:empty:before {
+	color: #707684;
 }
 
 .image-tool__caption {
-    border: none;
+	border: none;
 }
