@@ -38,7 +38,7 @@
 		{/if}
 	</div>
 
-	<div class="text-3xl md:text-4xl font-semibold py-4">
+	<div class="text-3xl md:text-4xl font-semibold font-serif py-4">
 		{isEmptyString(data.title) ? 'Untitled' : data.title}
 	</div>
 
@@ -65,5 +65,7 @@
 		</table>
 	</div>
 
-	<Editor data={data.content} readOnly={true} />
+	<div class="font-serif">
+		<Editor data={data.content} readOnly={true} />
+	</div>
 </div>
