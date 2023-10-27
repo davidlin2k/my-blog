@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import { PUBLIC_API_URL } from '$env/static/public';
 
 	import { formatDate, isEmptyString, getFileMd5 } from '$lib/utils';
@@ -112,7 +113,7 @@
 				return {
 					success: 1,
 					file: {
-						url: `${PUBLIC_API_URL}/blogs/${data.id}/files/${res.id}`
+						url: `${$page.url.origin}/blogs/${data.id}/files/${res.id}`
 					}
 				};
 			}
