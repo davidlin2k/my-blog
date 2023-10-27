@@ -1,7 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Checkbox, Spinner, Button, Alert } from 'flowbite-svelte';
-	import { fade } from "svelte/transition";
+	import { Checkbox, Spinner, Button } from 'flowbite-svelte';
+	import { fade } from 'svelte/transition';
 
 	import { email, rememberMe } from '../../store';
 
@@ -18,9 +18,15 @@
 
 <div>
 	{#if showAlert}
-		<div class="flex items-center p-2 mb-4 text-red-800 rounded-lg bg-red-50" out:fade={{ duration: 150 }}>
+		<div
+			class="flex items-center p-2 mb-4 text-red-800 rounded-lg bg-red-50"
+			out:fade={{ duration: 150 }}
+		>
 			<div class="ml-3 text-sm font-medium">Sign in failed.</div>
-			<Button class="ml-auto text-red-500 rounded-lg bg-red-50 p-1.5 hover:bg-red-200 h-8 w-8" on:click={closeAlert}>
+			<Button
+				class="ml-auto text-red-500 rounded-lg bg-red-50 p-1.5 hover:bg-red-200 h-8 w-8"
+				on:click={closeAlert}
+			>
 				<span class="sr-only">Close</span>
 				<svg
 					class="w-3 h-3"

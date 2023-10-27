@@ -38,7 +38,10 @@
 				{/if}
 				<!-- User section with dropdown -->
 				<div class="relative dropdown-container">
-					<button on:click={toggleDropdown} class="flex items-center rounded px-3 py-2 text-text-100">
+					<button
+						on:click={toggleDropdown}
+						class="flex items-center rounded px-3 py-2 text-text-100"
+					>
 						<span class="mr-2">{$page.data.user ? $page.data.user.name : 'Welcome'}</span>
 						<svg class="h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
 							><path d="M7 10l5 5 5-5H7z" /></svg
@@ -47,7 +50,9 @@
 
 					<!-- Dropdown Menu -->
 					<div
-						class={isOpen ? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl' : 'hidden'}
+						class={isOpen
+							? 'absolute right-0 mt-2 w-48 py-2 bg-bg-200 rounded shadow-xl'
+							: 'hidden'}
 					>
 						{#if $page.data.user}
 							<a

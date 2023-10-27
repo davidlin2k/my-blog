@@ -1,4 +1,4 @@
-@import "./stylesheets/editor.css";
+@import './stylesheets/editor.css';
 
 @tailwind base;
 @tailwind components;
@@ -34,7 +34,7 @@
 	}
 }
 
-.div-input[contenteditable=true]:empty:before {
+.div-input[contenteditable='true']:empty:before {
 	content: attr(data-placeholder);
 	pointer-events: none;
 	display: block;

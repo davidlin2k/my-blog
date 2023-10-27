@@ -1,54 +1,54 @@
 <script lang="ts">
-    import { getFileMd5 } from "$lib/utils";
+	import { getFileMd5 } from '$lib/utils';
 
-    export let directUploadUrl = '/files';
-    export let resourceUrl = '';
-    export let id = '';
+	export let directUploadUrl = '/files';
+	export let resourceUrl = '';
+	export let id = '';
 
-    export let updateResourceBody: any = (signed_id: string) => {
-        return signed_id;
-    }
+	export let updateResourceBody: any = (signed_id: string) => {
+		return signed_id;
+	};
 
-    export let files: any = null;
+	export let files: any = null;
 
-    export const directUpload = async () => {
-        if (!files) return;
+	export const directUpload = async () => {
+		if (!files) return;
 
-        const file = files[0];
-        const md5 = await getFileMd5(file);
+		const file = files[0];
+		const md5 = await getFileMd5(file);
 
-        const blob = {
-            blob: {
-                filename: file.name,
-                byte_size: file.size,
-                content_type: file.type,
-                checksum: md5,
-            }
-        }
+		const blob = {
+			blob: {
+				filename: file.name,
+				byte_size: file.size,
+				content_type: file.type,
+				checksum: md5
+			}
+		};
 
-        const directUpload = await fetch(directUploadUrl, {
-            method: 'POST',
-            body: JSON.stringify(blob),
-        });
+		const directUpload = await fetch(directUploadUrl, {
+			method: 'POST',
+			body: JSON.stringify(blob)
+		});
 
-        const data = await directUpload.json();
+		const data = await directUpload.json();
 
-        const s3 = await fetch(data.direct_upload.url, {
-            method: 'PUT',
-            headers: data.direct_upload.headers,
-            body: file,
-        });
+		const s3 = await fetch(data.direct_upload.url, {
+			method: 'PUT',
+			headers: data.direct_upload.headers,
+			body: file
+		});
 
-        if (s3.ok) {
-            const resource = await fetch(resourceUrl, {
-                method: 'PUT',
-                body: JSON.stringify(updateResourceBody(data.signed_id)),
-            });
+		if (s3.ok) {
+			const resource = await fetch(resourceUrl, {
+				method: 'PUT',
+				body: JSON.stringify(updateResourceBody(data.signed_id))
+			});
 
-            const resourceData = await resource.json();
-            console.log(resourceData);
-        }
-    }
+			const resourceData = await resource.json();
+			console.log(resourceData);
+		}
+	};
 </script>
 
-<input class="hidden" type="file" id={id} bind:files={files}>
+<input class="hidden" type="file" {id} bind:files />
