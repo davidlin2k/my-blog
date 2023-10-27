@@ -18,9 +18,7 @@ export const POST: RequestHandler = async ({ request, params, locals }) => {
 	});
 
 	if (res.ok) {
-		const body = await res.json();
-
-		return new Response(JSON.stringify(body));
+		return res;
 	} else {
 		throw error(res.status, 'Not found');
 	}
