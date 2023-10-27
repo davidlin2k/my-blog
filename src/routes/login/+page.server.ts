@@ -4,8 +4,6 @@ import type { PageServerLoad, Actions } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
-export const ssr = false;
-
 /** @type {import('./$types').PageServerLoad} */
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.token) throw redirect(307, '/');
@@ -20,8 +18,6 @@ export const actions: Actions = {
 			email: data.get('email'),
 			password: data.get('password')
 		});
-
-		console.log(res);
 
 		if (!res.ok) {
 			return fail(res.status, { email: data.get('email') });
