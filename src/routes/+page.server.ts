@@ -4,14 +4,16 @@ import { redirect, error } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
-export const load: PageServerLoad = ({ locals }) => {
-	const res: Promise<any> = api.get('blogs', locals.token).then((res) => res.json());
+export const load: PageServerLoad = async ({ locals }) => {
+	const res = await api.get('blogs', locals.token);
 
-	return {
-		streamed : {
-			blogs: res
-		}
-	};
+	if (!res.ok) {
+		throw error(res.status, 'Failed to load blogs');
+	}
+
+	const body = await res.json();
+
+	return { blogs: body.data };
 };
 
 /** @type {import('./$types').Actions} */
