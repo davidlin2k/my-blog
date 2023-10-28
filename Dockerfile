@@ -25,4 +25,7 @@ COPY package.json .
 EXPOSE 3000
 ENV NODE_ENV=production
 
+ARG ORIGIN
+ENV ORIGIN=$ORIGIN
+
 CMD [ "node", "server.js" ]
