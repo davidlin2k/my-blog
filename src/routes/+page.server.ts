@@ -7,7 +7,11 @@ import * as api from '$lib/api';
 export const load: PageServerLoad = ({ locals }) => {
 	const res: Promise<any> = api.get('blogs', locals.token).then((res) => res.json());
 
-	return { blogs: res };
+	return {
+		streamed : {
+			blogs: res
+		}
+	};
 };
 
 /** @type {import('./$types').Actions} */

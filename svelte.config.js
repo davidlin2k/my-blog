@@ -10,14 +10,6 @@ const config = {
 		}
 	},
 	preprocess: vitePreprocess(),
-	csp: {
-		directives: {
-			'script-src': ['self']
-		},
-		reportOnly: {
-			'script-src': ['self']
-		}
-	}
 };
 
 export default config;

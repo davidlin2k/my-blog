@@ -12,7 +12,7 @@ async function send({ method, path, data, token }) {
 		opts.headers['Authorization'] = `Bearer ${token}`;
 	}
 
-	return fetch(`${PUBLIC_API_URL}/api/${path}`, opts);
+	return await fetch(`${PUBLIC_API_URL}/api/${path}`, opts);
 }
 
 export function get(path, token) {

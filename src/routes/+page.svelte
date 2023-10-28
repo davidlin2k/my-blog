@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Blogs from './blogs/Blogs.svelte';
 	import type { PageData } from './$types';
+	import BlogCardGrid from "$components/BlogCardGrid.svelte";
 
 	export let data: PageData;
 </script>
@@ -9,10 +9,14 @@
 	<title>David's Blog</title>
 </svelte:head>
 
-{#await data.blogs}
-	Loading...
-{:then value}
-	<Blogs blogs={value.data} />
-{:catch error}
-	Error :(
-{/await}
+<div class="p-4">
+	<div class="container m-auto">
+		{#await data.streamed.blogs}
+			Loading...
+		{:then value}
+			<BlogCardGrid blogs={value.data} />
+		{:catch error}
+			Error :(
+		{/await}
+	</div>
+</div>
