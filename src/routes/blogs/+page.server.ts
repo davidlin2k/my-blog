@@ -4,10 +4,10 @@ import { redirect, error } from '@sveltejs/kit';
 import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
-export const load: PageServerLoad = async ({ isDataRequest, locals }) => {
+export const load: PageServerLoad = ({ locals }) => {
 	const res: Promise<any> = api.get('blogs', locals.token).then((res) => res.json());
 
-	return { blogs: isDataRequest ? res : await res };
+	return { blogs: res };
 };
 
 /** @type {import('./$types').Actions} */
