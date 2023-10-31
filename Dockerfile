@@ -1,21 +1,20 @@
-FROM node:18-alpine AS builder
+FROM oven/bun AS builder
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN bun install
 
 COPY . .
 
-RUN npm run build
-RUN npm prune --production
+RUN bun run build
+RUN bun prune --production
 
-FROM node:18-alpine
+FROM oven/bun
 
 WORKDIR /app
 
-RUN apk add --update curl && \
-    rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y curl
 
 COPY --from=builder /app/build ./build/
 COPY --from=builder /app/node_modules ./node_modules/
@@ -28,4 +27,4 @@ ENV NODE_ENV=production
 ARG ORIGIN
 ENV ORIGIN=$ORIGIN
 
-CMD [ "node", "server.js" ]
+CMD [ "bun", "server.js" ]
