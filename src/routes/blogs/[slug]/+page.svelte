@@ -5,17 +5,18 @@
 	import { CalendarMonthSolid, EyeSolid } from 'flowbite-svelte-icons';
 	import Editor from '$components/Editor.svelte';
 	import { Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
+	import CommentContainer from "./CommentContainer.svelte";
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 </script>
 
 <svelte:head>
-	<title>{data.title ?? 'Untitled'}</title>
+	<title>{data.blog.title ?? 'Untitled'}</title>
 </svelte:head>
 
-{#if data.cover_image_url}
-	<img class="w-screen h-[30vh] object-cover" src={data.cover_image_url} alt="Writing" />
+{#if data.blog.cover_image_url}
+	<img class="w-screen h-[30vh] object-cover" src={data.blog.cover_image_url} alt="Writing" />
 {/if}
 
 <div class="max-w-3xl px-8 py-4 m-auto">
@@ -29,17 +30,17 @@
 			<BreadcrumbItem
 				linkClass="ml-1 text-sm font-medium text-text-100 hover:text-text-200 md:ml-2"
 				spanClass="ml-1 text-sm font-medium max-w-[128px] overflow-hidden whitespace-nowrap overflow-ellipsis text-gray-500 md:ml-2"
-				>{isEmptyString(data.title) ? 'Untitled' : data.title}</BreadcrumbItem
+				>{isEmptyString(data.blog.title) ? 'Untitled' : data.blog.title}</BreadcrumbItem
 			>
 		</Breadcrumb>
 
-		{#if data.user_id === $page.data.user?.id}
-			<a class="ml-auto" href={`/blogs/${data.id}/edit`}>Edit</a>
+		{#if data.blog.user_id === $page.data.user?.id}
+			<a class="ml-auto" href={`/blogs/${data.blog.id}/edit`}>Edit</a>
 		{/if}
 	</div>
 
 	<div class="text-3xl md:text-4xl font-semibold font-serif py-4">
-		{isEmptyString(data.title) ? 'Untitled' : data.title}
+		{isEmptyString(data.blog.title) ? 'Untitled' : data.blog.title}
 	</div>
 
 	<div class="mb-4 border-b border-bg-300">
@@ -51,7 +52,7 @@
 						<div>Date</div>
 					</td>
 
-					<td class="">{formatDate(data.created_at)}</td>
+					<td class="">{formatDate(data.blog.created_at)}</td>
 				</tr>
 				<tr class="items-center text-text-200">
 					<td class="flex items-center">
@@ -59,13 +60,15 @@
 						<div>Status</div>
 					</td>
 
-					<td class="">{capitalizeFirstLetter(data.status)}</td>
+					<td class="">{capitalizeFirstLetter(data.blog.status)}</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
 	<div class="font-serif">
-		<Editor data={data.content} readOnly={true} />
+		<Editor data={data.blog.content} readOnly={true} uploadByFile={null} />
 	</div>
+
+	<CommentContainer comments={data.comments} />
 </div>
