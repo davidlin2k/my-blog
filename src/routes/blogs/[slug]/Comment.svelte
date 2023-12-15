@@ -16,7 +16,7 @@
 	</div>
 	<div>{comment.content}</div>
 
-	{#if comment.user.id === $page.data.user.id}
+	{#if comment.user.id === $page.data.user?.id}
 		<div class="flex justify-end">
 			<form method="POST" action="?/deleteComment&id={comment.id}" use:enhance>
 				<button class="text-sm text-red-500 hover:text-red-600">Delete</button>
