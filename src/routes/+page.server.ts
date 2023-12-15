@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const res = await api.get('blogs', locals.token);
 
 	if (!res.ok) {
-		throw error(res.status, 'Failed to load blogs');
+		error(res.status, 'Failed to load blogs');
 	}
 
 	const body = await res.json();
@@ -19,16 +19,16 @@ export const load: PageServerLoad = async ({ locals }) => {
 /** @type {import('./$types').Actions} */
 export const actions: Actions = {
 	default: async ({ locals, cookies }) => {
-		if (!locals.token) throw error(401, 'Unauthorized');
+		if (!locals.token) error(401, 'Unauthorized');
 
 		const res = await api.post('blogs', {}, locals.token);
 
 		if (!res.ok) {
-			throw error(res.status, 'Failed to create blog');
+			error(res.status, 'Failed to create blog');
 		}
 
 		const body = await res.json();
 
-		throw redirect(307, `/blogs/${body.data.id}/edit`);
+		redirect(307, `/blogs/${body.data.id}/edit`);
 	}
 };
