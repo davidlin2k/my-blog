@@ -9,7 +9,7 @@ const config = {
 			$components: './src/components'
 		}
 	},
-	preprocess: vitePreprocess(),
+	preprocess: vitePreprocess()
 };
 
 export default config;

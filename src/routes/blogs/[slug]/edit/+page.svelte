@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from "$app/stores";
+	import { page } from '$app/stores';
 
 	import { formatDate, isEmptyString, getFileMd5 } from '$lib/utils';
 	import placeholder from '$lib/assets/placeholder.jpg';

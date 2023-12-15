@@ -1,7 +1,7 @@
 import type { RequestHandler } from './$types';
 
 import * as api from '$lib/api';
-import {error, redirect} from "@sveltejs/kit";
+import { error, redirect } from '@sveltejs/kit';
 
 export const GET: RequestHandler = async ({ params, locals }) => {
 	const res = await api.get(`blogs/${params.slug}/files/${params.key}`, locals.token);

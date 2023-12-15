@@ -7,8 +7,8 @@ import * as api from '$lib/api';
 export const load = async ({ locals, params }: Parameters<PageServerLoad>[0]) => {
 	const [blogRes, commentsRes] = await Promise.all([
 		api.get(`blogs/${params.slug}`, locals.token),
-		api.get(`blogs/${params.slug}/comments`, locals.token),
-	])
+		api.get(`blogs/${params.slug}/comments`, locals.token)
+	]);
 
 	if (!blogRes.ok) {
 		error(blogRes.status, 'Not found');
@@ -18,10 +18,7 @@ export const load = async ({ locals, params }: Parameters<PageServerLoad>[0]) =>
 		error(commentsRes.status, 'Failed to load comments');
 	}
 
-	const [blog, comments] = await Promise.all([
-		blogRes.json(),
-		commentsRes.json(),
-	])
+	const [blog, comments] = await Promise.all([blogRes.json(), commentsRes.json()]);
 
 	return { blog: blog.data, comments: comments.data };
 };
@@ -31,9 +28,13 @@ export const actions: Actions = {
 	createComment: async ({ locals, params, request }) => {
 		const data = await request.formData();
 
-		const res = await api.post(`blogs/${params.slug}/comments`, {
-			content: data.get('comment'),
-		}, locals.token);
+		const res = await api.post(
+			`blogs/${params.slug}/comments`,
+			{
+				content: data.get('comment')
+			},
+			locals.token
+		);
 
 		if (!res.ok) {
 			error(res.status, 'Failed to create comment');
@@ -43,7 +44,7 @@ export const actions: Actions = {
 
 		return {
 			body: comment.data,
-			status: 201,
+			status: 201
 		};
 	},
 	deleteComment: async ({ locals, params, url }) => {
@@ -51,5 +52,5 @@ export const actions: Actions = {
 		const result = await api.del(`blogs/${params.slug}/comments/${id}`, locals.token);
 
 		if (result.error) error(result.status, result.error);
-	},
+	}
 };
