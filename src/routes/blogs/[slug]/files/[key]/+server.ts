@@ -9,8 +9,8 @@ export const GET: RequestHandler = async ({ params, locals }) => {
 	if (res.ok) {
 		const body = await res.json();
 
-		throw redirect(307, body.data.url);
+		redirect(307, body.data.url);
 	}
 
-	throw error(res.status, 'Not found');
+	error(res.status, 'Not found');
 };

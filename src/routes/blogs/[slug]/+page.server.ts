@@ -11,11 +11,11 @@ export const load = async ({ locals, params }: Parameters<PageServerLoad>[0]) =>
 	])
 
 	if (!blogRes.ok) {
-		throw error(blogRes.status, 'Not found');
+		error(blogRes.status, 'Not found');
 	}
 
 	if (!commentsRes.ok) {
-		throw error(commentsRes.status, 'Failed to load comments');
+		error(commentsRes.status, 'Failed to load comments');
 	}
 
 	const [blog, comments] = await Promise.all([
@@ -36,7 +36,7 @@ export const actions: Actions = {
 		}, locals.token);
 
 		if (!res.ok) {
-			throw error(res.status, 'Failed to create comment');
+			error(res.status, 'Failed to create comment');
 		}
 
 		const comment = await res.json();
@@ -50,6 +50,6 @@ export const actions: Actions = {
 		const id = url.searchParams.get('id');
 		const result = await api.del(`blogs/${params.slug}/comments/${id}`, locals.token);
 
-		if (result.error) throw error(result.status, result.error);
+		if (result.error) error(result.status, result.error);
 	},
 };

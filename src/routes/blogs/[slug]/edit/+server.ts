@@ -11,11 +11,11 @@ export const PUT: RequestHandler = async ({ request, params, locals }) => {
 		const body = await res.json();
 
 		if (body.data.user_id !== locals.user) {
-			throw error(401, 'Unauthorized');
+			error(401, 'Unauthorized');
 		}
 
 		return new Response(JSON.stringify(body.data));
 	} else {
-		throw error(res.status, 'Not found');
+		error(res.status, 'Not found');
 	}
 };

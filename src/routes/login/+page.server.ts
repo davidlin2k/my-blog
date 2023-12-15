@@ -6,7 +6,7 @@ import * as api from '$lib/api';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load: PageServerLoad = async ({ locals }) => {
-	if (locals.token) throw redirect(307, '/');
+	if (locals.token) redirect(307, '/');
 };
 
 /** @type {import('./$types').Actions} */
@@ -36,6 +36,6 @@ export const actions: Actions = {
 			maxAge: maxAge
 		});
 
-		throw redirect(307, '/');
+		redirect(307, '/');
 	}
 };

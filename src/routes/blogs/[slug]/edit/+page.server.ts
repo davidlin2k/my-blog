@@ -10,11 +10,11 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 		const body = await res.json();
 
 		if (body.data.user_id !== locals.user) {
-			throw error(401, 'Unauthorized');
+			error(401, 'Unauthorized');
 		}
 
 		return body.data;
 	} else {
-		throw error(res.status, 'Not found');
+		error(res.status, 'Not found');
 	}
 };
