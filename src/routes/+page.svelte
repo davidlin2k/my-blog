@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import BlogCardGrid from "$components/BlogCardGrid.svelte";
+	import BlogCardGrid from '$components/BlogCardGrid.svelte';
 
 	export let data: PageData;
 </script>

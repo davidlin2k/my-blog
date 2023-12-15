@@ -5,7 +5,7 @@
 	import { CalendarMonthSolid, EyeSolid } from 'flowbite-svelte-icons';
 	import Editor from '$components/Editor.svelte';
 	import { Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
-	import CommentContainer from "./CommentContainer.svelte";
+	import CommentContainer from './CommentContainer.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
