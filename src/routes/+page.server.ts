@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const res = await api.get('blogs', locals.token);
 
 	if (!res.ok) {
-		error(res.status, 'Failed to load blogs');
+		error(res.status, 'Failed to fetch blogs');
 	}
 
 	const body = await res.json();

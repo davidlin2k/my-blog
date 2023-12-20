@@ -25,7 +25,7 @@
 		}}
 	>
 		<div class="mb-4">
-			<label for="email" class="block text-sm font-medium text-text-200 mb-2">Email</label>
+			<label for="name" class="block text-sm font-medium text-text-200 mb-2">Name</label>
 			<input
 				type="text"
 				name="name"
