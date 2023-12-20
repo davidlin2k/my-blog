@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { error } from '@sveltejs/kit';
+import {error, redirect} from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 import * as api from '$lib/api';
@@ -25,6 +25,14 @@ export const load = async ({ locals, params }: Parameters<PageServerLoad>[0]) =>
 
 /** @type {import('./$types').Actions} */
 export const actions: Actions = {
+	delete: async ({ locals, params }) => {
+		const result = await api.del(`blogs/${params.slug}`, locals.token);
+
+		if (result.error) error(result.status, result.error);
+
+		redirect(307, '/')
+	},
+
 	createComment: async ({ locals, params, request }) => {
 		const data = await request.formData();
 

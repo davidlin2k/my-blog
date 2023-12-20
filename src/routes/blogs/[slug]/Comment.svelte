@@ -19,7 +19,7 @@
 	{#if comment.user.id === $page.data.user?.id}
 		<div class="flex justify-end">
 			<form method="POST" action="?/deleteComment&id={comment.id}" use:enhance>
-				<button class="text-sm text-red-500 hover:text-red-600">Delete</button>
+				<button type="submit" onclick="return confirm('Are you sure?')" class="text-sm text-red-500 hover:text-red-600">Delete</button>
 			</form>
 		</div>
 	{/if}

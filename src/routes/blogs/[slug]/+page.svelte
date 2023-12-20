@@ -1,14 +1,15 @@
 <script>
-	import { page } from '$app/stores';
+	import {enhance} from '$app/forms';
+	import {page} from '$app/stores';
 
-	import { formatDate, capitalizeFirstLetter, isEmptyString } from '$lib/utils';
-	import { CalendarMonthSolid, EyeSolid } from 'flowbite-svelte-icons';
+	import {formatDate, capitalizeFirstLetter, isEmptyString} from '$lib/utils';
+	import {CalendarMonthSolid, EyeSolid, ChevronDownSolid} from 'flowbite-svelte-icons';
 	import Editor from '$components/Editor.svelte';
-	import { Breadcrumb, BreadcrumbItem } from 'flowbite-svelte';
+	import {Breadcrumb, BreadcrumbItem, Dropdown, DropdownItem, Button} from 'flowbite-svelte';
 	import CommentContainer from './CommentContainer.svelte';
 
-	/** @type {import('./$types').PageData} */
-	export let data;
+/** @type {import('./$types').PageData} */
+export let data;
 </script>
 
 <svelte:head>
@@ -35,7 +36,16 @@
 		</Breadcrumb>
 
 		{#if data.blog.user_id === $page.data.user?.id}
-			<a class="ml-auto" href={`/blogs/${data.blog.id}/edit`}>Edit</a>
+			<Button class="ml-auto">Settings<ChevronDownSolid class="w-3 h-3 ms-2 text-white dark:text-white" /></Button>
+			<Dropdown class="w-32">
+				<DropdownItem href={`/blogs/${data.blog.id}/edit`}>Edit</DropdownItem>
+				<DropdownItem>
+					<form action="?/delete" method="POST" use:enhance>
+						<input type="hidden" name="_method" value="DELETE" />
+						<button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+					</form>
+				</DropdownItem>
+			</Dropdown>
 		{/if}
 	</div>
 
